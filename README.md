@@ -1,10 +1,10 @@
-# WebScraper
+# SwiftScraper
 
 A Swift iOS application that allows users to scrape and analyze web content directly from their mobile device.
 
 ## Overview
 
-WebScraper is a lightweight, user-friendly iOS application built with Swift and SwiftUI that enables users to extract and view structured data from websites. The app can identify and extract titles, headings, paragraphs, links, and images from any web page for easy browsing and analysis.
+SwiftScraper is a lightweight, user-friendly iOS application built with Swift and SwiftUI that enables users to extract and view structured data from websites. The app can identify and extract titles, headings, paragraphs, links, and images from any web page for easy browsing and analysis.
 
 ## Features
 

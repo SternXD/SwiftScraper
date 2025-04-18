@@ -101,6 +101,9 @@ struct ContentView: View {
                 }
             }
         }
+        .onAppear {
+            showContentRightsDisclaimerIfNeeded()
+        }
     }
     
     // MARK: - Component Views
@@ -480,5 +483,23 @@ struct ContentView: View {
     private func dismissKeyboard() {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder),
                                        to: nil, from: nil, for: nil)
+    }
+
+    private func showContentRightsDisclaimerIfNeeded() {
+        let hasSeenDisclaimer = UserDefaults.standard.bool(forKey: "hasSeenContentRightsDisclaimer")
+        guard !hasSeenDisclaimer else { return }
+
+        let alert = UIAlertController(
+            title: "Usage Disclaimer",
+            message: "This app allows users to extract content from websites of their choosing. Please ensure you comply with the Terms of Service of any website you access using this tool. The developer is not responsible for misuse.",
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: "I Understand", style: .default))
+
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+           let rootVC = windowScene.windows.first?.rootViewController {
+            rootVC.present(alert, animated: true)
+            UserDefaults.standard.set(true, forKey: "hasSeenContentRightsDisclaimer")
+        }
     }
 }
